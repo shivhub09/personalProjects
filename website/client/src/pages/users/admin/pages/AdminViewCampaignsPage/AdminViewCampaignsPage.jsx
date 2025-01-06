@@ -3,11 +3,11 @@ import PageTitle from '../../../../../components/PageTitles/PageTitle';
 import './AdminViewCampaignPage.css';
 import ViewCampaignsContainer from '../../../../../components/ViewCampaignsContainer/ViewCampaignsContainer';
 
-const AdminViewCampaignsPage = ({ setActiveTab  }) => {
+const AdminViewCampaignsPage = () => {
     return (
         <div className="adminViewCampaignsPage-container">
             <PageTitle title={`View Campaigns`} />
-            <ViewCampaignsContainer setActiveTab={setActiveTab} />
+            <ViewCampaignsContainer  />
         </div>
     );
 }

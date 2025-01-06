@@ -6,9 +6,9 @@ const { v2 } = cloudinary;
 const fs = require("fs");
 
 v2.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET_KEY,
+  cloud_name: "dpplukuqi",
+  api_key: 455595154582159,
+  api_secret: "o1iSAcmHf_frMJA13lCMdh4EHNE"
 });
 
 

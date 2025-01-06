@@ -3,8 +3,11 @@ import axios from "axios";
 import PageTitle from "../../../../../components/PageTitles/PageTitle";
 import "./AdminCreateNewCampaign.css";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const AdminCreateNewCampaign = ({ clientId, setActiveTab }) => {
+const AdminCreateNewCampaign = ({ setActiveTab }) => {
+  const { clientId } = useParams();
+
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,6 +28,11 @@ const AdminCreateNewCampaign = ({ clientId, setActiveTab }) => {
 
   const handleNextClick = () => {
     navigate(`/admin/createNewForm/${campaignId}`);
+    if (setActiveTab && typeof setActiveTab === "function") {
+      setActiveTab("CreateForm");
+    } else {
+      console.warn("setActiveTab is not provided or is not a function.");
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -58,7 +66,7 @@ const AdminCreateNewCampaign = ({ clientId, setActiveTab }) => {
       if (response.status === 201) {
         const newCampaign = response.data.data;
         setSuccess(
-          `Campaign created successfully: ${newCampaign.title} (ID: ${newCampaign._id})`
+          "Campaign created successfully: ${newCampaign.title} (ID: ${newCampaign._id}"
         );
         setTitle("");
         setId(newCampaign._id);
@@ -66,7 +74,7 @@ const AdminCreateNewCampaign = ({ clientId, setActiveTab }) => {
       }
     } catch (error) {
       setError(
-        "An error occurred while creating new campaign. Try again later."
+        "An error occurred while creating the new campaign. Try again later."
       );
     } finally {
       setLoading(false);

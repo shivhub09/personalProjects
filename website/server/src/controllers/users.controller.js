@@ -199,13 +199,13 @@ const currentUser = asyncHandler(async (req, res) => {
 });
 // Controller: User Details
 const userDetails = asyncHandler(async (req, res) => {
-  const { userId } = req.body;
+  const { id } = req.body;
 
-  if (!userId) {
+  if (!id) {
     throw new apiError(400, "User ID not provided.");
   }
 
-  const fetchedUser = await User.findById(userId);
+  const fetchedUser = await User.findById(id);
 
   if (!fetchedUser) {
     throw new apiError(404, "No user found with the given ID.");

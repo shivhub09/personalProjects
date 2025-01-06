@@ -8,9 +8,8 @@ const CampaignDetailsBox = ({ campaignId, title, url, imgSrc, setActiveTab }) =>
   const handleNextClick = () => {
     if (url == "create-form") {
       navigate(`/admin/createNewForm/${campaignId}`);
-
     } else {
-      setActiveTab(`${url}/${campaignId}`)
+      navigate('viewForms')
     }
   };
 

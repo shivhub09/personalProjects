@@ -3,11 +3,14 @@ import axios from "axios";
 import PageTitle from "../../../../../components/PageTitles/PageTitle";
 import "./AdminFormDetails.css";
 import FormBox from "../../../../../components/FormBox/FormBox";
+import { useParams } from "react-router-dom";
 
-const AdminFormDetails = ({ campaignId, setActiveTab }) => {
+const AdminFormDetails = ({ setActiveTab }) => {
   const [forms, setForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { campaignId } = useParams();
 
   useEffect(() => {
     const fetchForms = async () => {

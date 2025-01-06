@@ -40,13 +40,13 @@ const App = () => {
 <Route
   path="/admin/createNewForm/:campaignId"
   element={
-    <RequiredAuth>
+    // <RequiredAuth>
       <AdminCreateForms />
-    </RequiredAuth>
+    // </RequiredAuth>
   }
 />
 
-      <Route
+      {/* <Route
         path="/admin/createNestedForm/:campaignId"
         element={<AdminCreateForms />}
       />
@@ -64,7 +64,7 @@ const App = () => {
         path="/admin/viewPromoters/:formId"
         element={<AdminAssignCreatedForm />}
       />
-      <Route path="/mis" element={<MisLandingPage />} />
+      <Route path="/mis" element={<MisLandingPage />} /> */}
       {/* <Route path="*" element={<Navigate to="/" />} /> */}
     </Routes >
   );

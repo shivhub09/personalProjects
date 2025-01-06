@@ -5,10 +5,11 @@ import CampaignDetailsBox from '../../../../../components/CampaignDetailsBoxes/C
 import './AdminCampaignDetailsPage.css';
 import CampaignDeleteBox from '../../../../../components/CampaignDetailsBoxes/CampaignDeleteBox';
 
-const AdminCampaignDetailsPage = ({  setActiveTab }) => {
+const AdminCampaignDetailsPage = ({ setActiveTab }) => {
   const navigate = useNavigate();  // Initialize the useNavigate hook
+  const { campaignId } = useParams();
 
-  const {campaignId} = useParams();
+
 
   useEffect(() => {
     // This effect will navigate back to the previous page when the component mounts
@@ -41,14 +42,15 @@ const AdminCampaignDetailsPage = ({  setActiveTab }) => {
             imgSrc="https://cdn-icons-png.flaticon.com/512/9316/9316720.png"
             title="VIEW FORMS"
             url="view-all-forms"
-            setActiveTab={setActiveTab}
+            
+            // setActiveTab={setActiveTab}
             campaignId={campaignId}
           />
           <CampaignDeleteBox
             imgSrc="https://cdn-icons-png.flaticon.com/512/2723/2723639.png"
             title="DELETE CAMPAIGN"
             campaignId={campaignId}
-            setActiveTab={setActiveTab}
+            // setActiveTab=  {setActiveTab}
           />
         </div>
       </div>

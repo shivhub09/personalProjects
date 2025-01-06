@@ -4,13 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./ViewCampaignsContainer.css";
 import ViewCampaignsBox from "./ViewCampaignsBox";
 
-const ViewCampaignsContainer = ({ setActiveTab }) => {
+const ViewCampaignsContainer = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const {clientId} = useParams();
+  const { clientId } = useParams();
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -42,7 +42,7 @@ const ViewCampaignsContainer = ({ setActiveTab }) => {
 
       if (response.status === 200) {
         alert("Client deleted successfully.");
-        setActiveTab("viewClients");
+        navigate("viewClients");
       }
     } catch (error) {
       console.error("Error deleting client:", error);
@@ -64,7 +64,7 @@ const ViewCampaignsContainer = ({ setActiveTab }) => {
         className="newCampaignBtn"
         type="button"
         value="Create New Campaign"
-        onClick={() => setActiveTab(`createNewCampaign/${clientId}`)}
+        onClick={() => navigate(`AdminCreateNewCampaign`)}
       />
       <input
         className="deleteClientBtn"
@@ -80,7 +80,7 @@ const ViewCampaignsContainer = ({ setActiveTab }) => {
             url={campaign.campaignLogo}
             campaign={campaign}
             campaignId={campaign._id}
-            // setActiveTab={setActiveTab}
+          // setActiveTab={setActiveTab}
           />
         ))}
       </div>
