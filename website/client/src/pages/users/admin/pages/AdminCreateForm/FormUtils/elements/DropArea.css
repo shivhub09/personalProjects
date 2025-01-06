@@ -1,0 +1,94 @@
+.drop-area-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.create-form-btn {
+  margin-right: 20px;
+  padding: 10px 20px;
+  height: 45px;
+  background-color: #3751b6;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 22px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.create-form-btn:hover {
+  background-color: #2a3e8c;
+  transform: translateY(-2px);
+}
+
+.create-form-btn:active {
+  background-color: #1f2d66;
+  transform: translateY(0);
+}
+
+.drop-area {
+  height: 80vh;
+  width: 700px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.drop-area::-webkit-scrollbar {
+  display: none;
+}
+
+.drop-area-title {
+  margin-left: 10px;
+  margin-right: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: grey;
+}
+
+.submitFormBtn {
+  border: none;
+  padding: 10px 25px;
+  background-color: #3751b6;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.formTitle {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 1px;
+}

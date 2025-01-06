@@ -1,0 +1,6 @@
+.admin-page-content{
+    margin-left: 275px;
+    padding: 20px;
+    width: calc(100% - 275px);
+    overflow: auto;
+}

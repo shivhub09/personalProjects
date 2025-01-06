@@ -1,0 +1,26 @@
+.shortText-container{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    background-color: transparent;
+}
+.shortText-container input{
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    outline: none;
+    background-color: transparent;
+}
+
+.shortText-title{
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+   
+}
+
+.shortText-input{
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding:8px;
+    border-radius: 8px;
+}
