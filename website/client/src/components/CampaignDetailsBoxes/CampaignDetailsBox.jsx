@@ -2,12 +2,13 @@ import React from 'react';
 import './CampaignDetailsBox.css';
 import { useNavigate } from 'react-router-dom';
 
-const CampaignDetailsBox = ({ campaignId, title, url, imgSrc, setActiveTab }) => {
+const CampaignDetailsBox = ({ campaignId, title, url, imgSrc }) => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
     if (url == "create-form") {
       navigate(`/admin/createNewForm/${campaignId}`);
+
     } else {
       navigate('viewForms')
     }
