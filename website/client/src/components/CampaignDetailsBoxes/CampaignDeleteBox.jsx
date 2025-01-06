@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./CampaignDeleteBox.css";
 import axios from "axios";
 const CampaignDeleteBox = ({ campaignId, title, imgSrc, setActiveTab }) => {
+  const navigate = useNavigate();
+
   const handleDeleteClient = async () => {
     try {
       const response = await axios.delete(
@@ -14,7 +16,7 @@ const CampaignDeleteBox = ({ campaignId, title, imgSrc, setActiveTab }) => {
 
       if (response.status === 200) {
         alert("Campaign deleted successfully.");
-        setActiveTab("viewClients");
+        navigate(-1);
       }
     } catch (error) {
       console.error("Error deleting client:", error);

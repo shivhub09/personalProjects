@@ -1,0 +1,46 @@
+.fileUpload-container{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    background-color: transparent;
+}
+.fileUpload-container input{
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    outline: none;
+    background-color: transparent;
+}
+
+.fileUpload-title{
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+   
+}
+
+.fileupload-input{
+    margin-top: 10px;
+    padding:8px;
+    border-radius: 8px;
+}
+
+.fileUpload-label {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .fileUpload-label:hover {
+    background-color: #0056b3;
+  }
+
+  .fileUpload-input {
+    display: none;
+  }
+  

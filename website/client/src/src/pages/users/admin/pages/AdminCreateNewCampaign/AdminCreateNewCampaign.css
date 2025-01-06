@@ -1,0 +1,156 @@
+/* Container Styling */
+.create-new-campaign-container {
+  background: linear-gradient(135deg, #CDF0FF, #B4ECF8); /* Gradient background similar to client container */
+  height: 75vh;
+  width: 95%;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  padding: 30px; /* Increased padding for consistency */
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s; /* Added transform transition */
+  max-width: 1200px; /* Match maximum width */
+}
+
+.create-new-campaign-container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Match hover effect */
+  transform: translateY(-5px);
+}
+
+/* Form Heading */
+.container-heading {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: black;
+  text-align: start;
+  margin-bottom: 30px;
+  position: relative; /* Allows for positioning of pseudo-element */
+}
+
+.container-heading::after {
+  content: "";
+  display: block;
+  width: 60px; /* Adjust width as needed */
+  height: 4px; /* Thickness of the line */
+  background-color: #007BFF;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -10px; /* Space between title and line */
+}
+
+/* Form Styling */
+.campaign-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+}
+.campaigninput-field {
+  padding: 12px 20px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  box-shadow: 2px 2px 2px rgba(203, 203, 203, 0.551);
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.campaign-input-field :hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.campaign-input-field :focus {
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.4);
+}
+
+/* File Upload */
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-upload-label {
+  font-size: 18px;
+  padding: 10px 25px; /* Increased padding */
+  border: 2px solid #007BFF;
+  background-color: white;
+  color: #007BFF;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: background-color 0.3s ease-in-out, color 0.3s;
+}
+
+.file-upload-label:hover {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+/* Submit Button */
+.submit-campaign-button {
+  font-size: 18px;
+  padding: 10px 25px; /* Match padding */
+  font-family: "Poppins", sans-serif;
+  border: none;
+  border-radius: 12px;
+  margin-top: 20px;
+  background-color: #007BFF;
+  color: #fff;
+  box-shadow: 2px 2px 2px rgb(138, 138, 138);
+  width: 300px; /* Adjust width */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.submit-campaign-button:disabled {
+  background-color: #7A7A7A;
+  cursor: not-allowed;
+}
+
+.submit-campaign-button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+/* Messages */
+.error-message, .success-message {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  animation: fadeIn 0.5s ease-in-out;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
+}
+
+.success-message {
+  background-color: #D4EDDA;
+  color: #155724;
+  border: 1px solid #C3E6CB;
+}
+
+/* Responsive Design */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
