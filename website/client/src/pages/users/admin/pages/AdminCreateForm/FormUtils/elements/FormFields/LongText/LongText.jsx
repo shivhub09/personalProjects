@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import './LongText.css'
 const LongText = ({ fullNameDataList, setFullNameData }) => {
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+  const handleBlur = (event) => {
+    if (event.target.value.trim()){
       const id = uuidv4(); 
       setFullNameData(id, event.target.value, 'Long Text');
     }
@@ -33,7 +33,7 @@ const LongText = ({ fullNameDataList, setFullNameData }) => {
       className="longText-title" 
       placeholder='Long Text'
       name="longTextTitle" 
-      onKeyDown={handleKeyPress}
+      onBlur={handleBlur}
 
       
       />

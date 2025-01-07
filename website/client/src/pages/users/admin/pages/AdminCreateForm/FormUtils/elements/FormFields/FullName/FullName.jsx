@@ -1,4 +1,3 @@
-// FullName.js
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useDrag } from "react-dnd";
@@ -7,8 +6,8 @@ import { setFullNameData } from "../actions/fullNameActions";
 import { v4 as uuidv4 } from "uuid";
 
 const FullName = ({ fullNameDataList, setFullNameData }) => {
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+  const handleBlur = (event) => {
+    if (event.target.value.trim()) {
       const id = uuidv4();
       setFullNameData(id, event.target.value, "Full Name");
     }
@@ -33,7 +32,7 @@ const FullName = ({ fullNameDataList, setFullNameData }) => {
         name=""
         className="fullName-title"
         placeholder="Full Name"
-        onKeyDown={handleKeyPress}
+        onBlur={handleBlur} // Trigger save on losing focus
       />
       <div className="form-inputs">
         <div className="firstName">

@@ -1,4 +1,3 @@
-// Email.js
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useDrag } from 'react-dnd';
@@ -6,9 +5,9 @@ import './Email.css';
 import { setFullNameData } from '../actions/fullNameActions';
 import { v4 as uuidv4 } from 'uuid';
 
-const Email = ({ fullNameDataList, setFullNameData  }) => {
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+const Email = ({ fullNameDataList, setFullNameData }) => {
+  const handleBlur = (event) => {
+    if (event.target.value.trim()) {
       const id = uuidv4(); // Generate a unique ID
       setFullNameData(id, event.target.value, 'Email');
     }
@@ -33,13 +32,9 @@ const Email = ({ fullNameDataList, setFullNameData  }) => {
         name="emailTitle"
         className="email-title"
         placeholder="Email"
-        onKeyDown={handleKeyPress}
+        onBlur={handleBlur} // Trigger save on losing focus
       />
-      <input
-        type="text"
-        name="emailInput"
-        className="email-input"
-      />
+      <input type="text" name="emailInput" className="email-input" />
     </div>
   );
 };

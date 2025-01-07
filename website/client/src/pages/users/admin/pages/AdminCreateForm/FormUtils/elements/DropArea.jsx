@@ -42,8 +42,8 @@ const DropArea = ({ onDrop, setFullNameData }) => {
     }
   }, []);
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+  const handleBlur = (event) => {
+    if (event.target.value.trim()){
       const id = uuidv4(); // Generate a unique ID
       setFullNameData(id, event.target.value, "Form Title");
     }
@@ -123,7 +123,7 @@ const DropArea = ({ onDrop, setFullNameData }) => {
             name="formTitle"
             className="formTitle"
             placeholder="Create Form Here"
-            onKeyDown={handleKeyPress}
+            onBlur={handleBlur}
           />
           <input
             type="button"

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { setFullNameData } from '../actions/fullNameActions';
@@ -6,11 +6,25 @@ import { v4 as uuidv4 } from 'uuid';
 import './Image.css';
 
 const Image = ({ fullNameDataList, setFullNameData }) => {
+  const [imagePreview, setImagePreview] = useState(null);
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      const id = uuidv4(); 
+  const handleBlur = (event) => {
+    if (event.target.value.trim()){
+      const id = uuidv4();
       setFullNameData(id, event.target.value, 'Image');
+    }
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+        const id = uuidv4();
+        setFullNameData(id, file.name, 'Uploaded Image');
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -26,16 +40,33 @@ const Image = ({ fullNameDataList, setFullNameData }) => {
     console.log('Full Name Data List:', fullNameDataList);
   }, [fullNameDataList]);
 
-
   return (
     <div className="imagePicker-container" ref={dragRef}>
-      <input type="text" className="imagePicker-title" placeholder="Enter Image Title"  name="imagePickerTitle" 
-      onKeyDown={handleKeyPress} />
-      <input type="image" className='imagePicker-input' id="imageUpload" />
-      <label htmlFor="imageUpload" className="imagePicker-label">Choose an Image</label>
+      <input
+        type="text"
+        className="imagePicker-title"
+        placeholder="Enter Image Title"
+        name="imagePickerTitle"
+        onBlur={handleBlur}
+      />
+      <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        onChange={handleImageUpload}
+        className="imagePicker-input"
+      />
+      <label htmlFor="imageUpload" className="imagePicker-label">
+        Choose an Image
+      </label>
+      {imagePreview && (
+        <div className="image-preview">
+          <img src={imagePreview} alt="Preview" className="image-preview-img" />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   fullNameDataList: state.fullName.fullNameDataList,
@@ -44,6 +75,5 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setFullNameData,
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Image);

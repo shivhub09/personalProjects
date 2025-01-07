@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import './Phone.css'
 const Phone = ({ fullNameDataList, setFullNameData }) => {
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+  const handleBlur = (event) => {
+    if (event.target.value.trim()){
       const id = uuidv4(); 
       setFullNameData(id, event.target.value, 'Phone');
     }
@@ -31,7 +31,7 @@ const Phone = ({ fullNameDataList, setFullNameData }) => {
       <input type="text" className='phonenumberTitle' id="" 
       name="phoneNumberTitle"
       placeholder='Phone Number'
-      onKeyDown={handleKeyPress}
+      onBlur={handleBlur}
       />
       <input type="number" name="" className='phoneNumberInput' id="" />      
     </div>

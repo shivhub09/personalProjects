@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { setFullNameData } from '../actions/fullNameActions';
 import { v4 as uuidv4 } from 'uuid';
-import './Heading.css'
+import './Heading.css';
+
 const Heading = ({ fullNameDataList, setFullNameData }) => {
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      const id = uuidv4(); 
+  const handleBlur = (event) => {
+    if (event.target.value.trim()) {
+      const id = uuidv4(); // Generate a unique ID
       setFullNameData(id, event.target.value, 'Heading');
     }
   };
@@ -24,21 +25,23 @@ const Heading = ({ fullNameDataList, setFullNameData }) => {
     console.log('Full Name Data List:', fullNameDataList);
   }, [fullNameDataList]);
 
-
-
   return (
     <div className="heading-container" ref={dragRef}>
-      <input 
-      type="text" 
-      className='input-heading' 
-      name="headingTitle" 
-      placeholder='Heading' 
-      onKeyDown={handleKeyPress}
+      <input
+        type="text"
+        className="input-heading"
+        name="headingTitle"
+        placeholder="Heading"
+        onBlur={handleBlur} // Trigger save on losing focus
       />
-      <input type="text" className="input-subHeading" placeholder='Sub Heading' />
+      <input
+        type="text"
+        className="input-subHeading"
+        placeholder="Sub Heading"
+      />
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => ({
   fullNameDataList: state.fullName.fullNameDataList,
@@ -48,5 +51,4 @@ const mapDispatchToProps = {
   setFullNameData,
 };
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Heading)
+export default connect(mapStateToProps, mapDispatchToProps)(Heading);

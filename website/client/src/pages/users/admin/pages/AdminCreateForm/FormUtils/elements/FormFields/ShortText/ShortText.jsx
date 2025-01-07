@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import './ShortText.css'
 const ShortText = ({ fullNameDataList, setFullNameData }) => {
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+  const handleBlur = (event) => {
+    if (event.target.value.trim()){
       const id = uuidv4(); 
       setFullNameData(id, event.target.value, 'Short Text');
     }
@@ -31,7 +31,7 @@ const ShortText = ({ fullNameDataList, setFullNameData }) => {
       type="text" 
       placeholder="Enter the text" className="shortText-title"
       name="shortTextTitle"
-      onKeyDown={handleKeyPress}
+      onBlur={handleBlur}
        />
 
       <input type="text"  className="shortText-input" />
