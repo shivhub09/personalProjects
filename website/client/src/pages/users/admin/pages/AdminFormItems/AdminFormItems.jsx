@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PageTitle from '../../../../../components/PageTitles/PageTitle';
 import './AdminFormItems.css'
-import FormDetailsBox from '../../../../../components/FormDetailsBox/FormDetailsBox';;
-const AdminFormItems = ({ formId, setActiveTab }) => {
+import FormDetailsBox from '../../../../../components/FormDetailsBox/FormDetailsBox';
+import { useParams } from 'react-router-dom';
+const AdminFormItems = ({setActiveTab }) => {
+    const { formId } = useParams();
     return (
         <div className="form-items">
             <PageTitle title="Form Items"></PageTitle>

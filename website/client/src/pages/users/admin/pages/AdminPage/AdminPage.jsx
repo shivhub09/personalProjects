@@ -12,6 +12,7 @@ import AdminViewCampaignsPage from '../AdminViewCampaignsPage/AdminViewCampaigns
 import AdminCampaignDetailsPage from '../AdminCampaignDetailsPage/AdminCampaignDetailsPage.jsx';
 import AdminCreateNewCampaign from '../AdminCreateNewCampaign/AdminCreateNewCampaign.jsx';
 import AdminFormDetails from '../AdminFormDetails/AdminFormDetails.jsx';
+import AdminFormItems from '../AdminFormItems/AdminFormItems.jsx';
 
 const AdminPage = () => {
     return (
@@ -30,11 +31,12 @@ const AdminPage = () => {
                     <Route path="campaignDetailsPage/:campaignId" element={<AdminCampaignDetailsPage />} />
                     <Route path="viewClients/client-detail/:clientId" element={<AdminViewCampaignsPage />} />
                     <Route path="viewClients/client-detail/:clientId/AdminCreateNewCampaign" element={<AdminCreateNewCampaign />} />
-                    <Route path="viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId" element={< AdminCampaignDetailsPage />} />
+                    <Route path="viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId" element={< AdminCampaignDetailsPage/>} />
                     <Route path="viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId/viewForms" element={<AdminFormDetails />} />
+                    <Route path="viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId/viewForms/viewFormData/:formId" element={<AdminFormItems />} />
+{/* //http://localhost:3000/admin/67406afc89e4fd843760e7f6/viewClients/client-detail/id/campaignDetailsPage/675a9352d3d410bd8349b2da/viewForms/viewFormData/67600441d936ffd3766f3e27 */}
 
-
-
+                    
                 </Routes>
             </div>
 

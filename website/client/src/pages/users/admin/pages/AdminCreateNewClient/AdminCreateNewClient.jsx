@@ -14,14 +14,18 @@ const AdminCreateNewClient = () => {
   const [success, setSuccess] = useState("");
 
 
+  ///http://localhost:3000/admin/67406afc89e4fd843760e7f6/viewClients/client-detail/677bc7917315c1d0c04e167f/campaignDetailsPage/677ccace37687a9517a32006/viewForms
+  //http://localhost:3000/admin/67406afc89e4fd843760e7f6/campaignDetailsPage/677ccace37687a9517a32006/viewForms
 
-  const { campaignId } = useParams();
+
+  // const { campaignId } = useParams();
+  // console.log(campaignId);
   
-    useEffect(() => {
-      if (!campaignId) {
-        console.error("Campaign ID is missing");
-      }
-    }, [campaignId]);
+  //   useEffect(() => {
+  //     if (!campaignId) {
+  //       console.error("Campaign ID is missing");
+  //     }
+  //   }, [campaignId]);
 
   const handleInputChange = (setter) => (event) => {
     setter(event.target.value);

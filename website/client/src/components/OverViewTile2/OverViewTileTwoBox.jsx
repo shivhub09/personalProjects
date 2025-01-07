@@ -3,7 +3,7 @@ import "./OverViewTileTwo.css"
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const OverViewTileTwoBox = ({id, title, details, setActiveTab }) => {
+const OverViewTileTwoBox = ({id, title, details }) => {
   const navigate = useNavigate();
   return (
     <div className="OverViewTileTwoBox-container">
@@ -11,7 +11,7 @@ const OverViewTileTwoBox = ({id, title, details, setActiveTab }) => {
       <p className='container-content'>{details}</p>
       <input className="moredetailsBtn" type="button" value="MORE DETAILS >"
         onClick={() => {
-        navigate(`campaignDetailsPage/${id}`);
+        navigate(`viewClients/client-detail/id/campaignDetailsPage/${id}`);
         }}
       />
     </div>
