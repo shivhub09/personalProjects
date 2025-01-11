@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { setFullNameData } from '../actions/fullNameActions';
-import { v4 as uuidv4 } from 'uuid'; 
+import { v4 as uuidv4 } from 'uuid';
+import * as XLSX from 'xlsx'; // Import XLSX library for reading Excel files
 import './DropDown.css';
 
 const DropDown = ({ fullNameDataList, setFullNameData }) => {
@@ -32,6 +33,24 @@ const DropDown = ({ fullNameDataList, setFullNameData }) => {
     console.log('Final Submission:', finalSubmission);
 
     setFullNameData(id, finalSubmission, 'Drop Down');
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); // Convert sheet to JSON array
+
+        const names = jsonData.flat(); // Flatten the array in case of multiple rows
+        setInputFields(names.filter((name) => typeof name === 'string' && name.trim() !== '')); // Filter valid names
+      };
+      reader.readAsArrayBuffer(file);
+    }
   };
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -74,6 +93,16 @@ const DropDown = ({ fullNameDataList, setFullNameData }) => {
       <button onClick={handleSubmit} className="submit-btn">
         Submit
       </button>
+
+      <div className="file-upload">
+        <label htmlFor="fileInput">Upload Excel File:</label>
+        <input
+          type="file"
+          id="fileInput"
+          accept=".xlsx, .xls"
+          onChange={handleFileUpload}
+        />
+      </div>
     </div>
   );
 };

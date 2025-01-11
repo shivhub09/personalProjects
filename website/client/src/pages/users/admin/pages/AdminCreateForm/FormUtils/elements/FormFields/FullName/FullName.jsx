@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useDrag } from "react-dnd";
 import "./FullName.css";
@@ -6,16 +6,44 @@ import { setFullNameData } from "../actions/fullNameActions";
 import { v4 as uuidv4 } from "uuid";
 
 const FullName = ({ fullNameDataList, setFullNameData }) => {
+  const [componentId] = useState(uuidv4()); // Unique ID for this component instance
+
   const handleBlur = (event) => {
-    if (event.target.value.trim()) {
-      const id = uuidv4();
-      setFullNameData(id, event.target.value, "Full Name");
+    const inputValue = event.target.value.trim();
+
+    if (inputValue) {
+      const existingEntry = fullNameDataList.find(
+        (entry) => entry.uniqueId === componentId // Match by this component's unique ID
+      );
+
+      if (existingEntry) {
+        // Update the existing entry
+        setFullNameData(existingEntry.uniqueId, inputValue, "Full Name");
+      } else {
+        // Create a new entry
+        setFullNameData(componentId, inputValue, "Full Name");
+      }
     }
   };
 
+
+  // just for testing purposes
+  // const handleFocus = (event) => {
+  //   const existingEntry = fullNameDataList.find(
+  //     (entry) => entry.uniqueId === componentId // Match by this component's unique ID
+  //   );
+
+  //   if (existingEntry) {
+  //     event.target.value = existingEntry.title; // Set the value of the input to the existing data
+  //     console.log(`Existing Data for ${componentId}:`, existingEntry.title);
+  //   } else {
+  //     console.log(`No existing data found for component: ${componentId}`);
+  //   }
+  // };
+
   const [{ isDragging }, dragRef] = useDrag({
     type: "item",
-    item: { id: uuidv4(), type: "Full Name", text: "Full Name" },
+    item: { id: componentId, type: "Full Name", text: "Full Name" },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -29,35 +57,25 @@ const FullName = ({ fullNameDataList, setFullNameData }) => {
     <div className="fullName-container" ref={dragRef}>
       <input
         type="text"
-        name=""
         className="fullName-title"
         placeholder="Full Name"
         onBlur={handleBlur} // Trigger save on losing focus
+        // onFocus={handleFocus} // Populate the input field with existing data on focus
       />
       <div className="form-inputs">
         <div className="firstName">
-          <input type="text" name="" className="firstName-input" id="" />
+          <input type="text" className="firstName-input" />
           <input
             type="text"
-            name=""
             className="firstName-title"
-            id=""
             placeholder="First Name"
           />
         </div>
         <div className="lastName">
+          <input type="text" className="lastName-input" />
           <input
             type="text"
-            name=""
-            className="lastName-input"
-            id=""
-            placeholder=""
-          />
-          <input
-            type="text"
-            name=""
             className="lastName-title"
-            id=""
             placeholder="Last Name"
           />
         </div>

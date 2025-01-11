@@ -70,7 +70,7 @@ const AdminCreateNewCampaign = ({ setActiveTab }) => {
         );
         setTitle("");
         setId(newCampaign._id);
-        setCampaignPhoto(null); // Clear photo after successful upload
+        setCampaignPhoto(null);
       }
     } catch (error) {
       setError(
