@@ -11,7 +11,7 @@ const Image = ({ fullNameDataList, setFullNameData }) => {
   const handleBlur = (event) => {
     if (event.target.value.trim()){
       const id = uuidv4();
-      setFullNameData(id, event.target.value, 'Image');
+      setFullNameData(id, event.target.value, 'Image',null);
     }
   };
 
@@ -22,7 +22,7 @@ const Image = ({ fullNameDataList, setFullNameData }) => {
       reader.onload = (e) => {
         setImagePreview(e.target.result);
         const id = uuidv4();
-        setFullNameData(id, file.name, 'Uploaded Image');
+        setFullNameData(id, file.name, 'Uploaded Image',null);
       };
       reader.readAsDataURL(file);
     }

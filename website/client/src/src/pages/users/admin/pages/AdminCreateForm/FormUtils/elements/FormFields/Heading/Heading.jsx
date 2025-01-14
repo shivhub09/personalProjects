@@ -8,7 +8,7 @@ const Heading = ({ fullNameDataList, setFullNameData }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const id = uuidv4(); 
-      setFullNameData(id, event.target.value, 'Heading');
+      setFullNameData(id, event.target.value, 'Heading',{});
     }
   };
 

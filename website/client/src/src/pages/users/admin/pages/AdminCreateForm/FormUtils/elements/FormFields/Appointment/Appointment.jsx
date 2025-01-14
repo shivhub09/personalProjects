@@ -9,7 +9,7 @@ const Appointment = ({ fullNameDataList, setFullNameData }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const id = uuidv4(); 
-      setFullNameData(id, event.target.value, 'Appointment');
+      setFullNameData(id, event.target.value, 'Appointment',null);
     }
   };
 

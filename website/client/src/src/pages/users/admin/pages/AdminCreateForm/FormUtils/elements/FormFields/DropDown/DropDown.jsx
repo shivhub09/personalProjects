@@ -31,7 +31,7 @@ const DropDown = ({ fullNameDataList, setFullNameData }) => {
     let finalSubmission = dropdownTitle + "," + totalFields;
     console.log('Final Submission:', finalSubmission);
 
-    setFullNameData(id, finalSubmission, 'Drop Down');
+    setFullNameData(id, finalSubmission, 'Drop Down',{});
   };
 
   const [{ isDragging }, dragRef] = useDrag({

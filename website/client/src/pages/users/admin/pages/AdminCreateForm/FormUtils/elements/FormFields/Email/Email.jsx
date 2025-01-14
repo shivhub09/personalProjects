@@ -9,7 +9,7 @@ const Email = ({ fullNameDataList, setFullNameData }) => {
   const handleBlur = (event) => {
     if (event.target.value.trim()) {
       const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, 'Email');
+      setFullNameData(id, event.target.value, 'Email',null);
     }
   };
 

@@ -9,7 +9,7 @@ const DatePicker = ({ fullNameDataList, setFullNameData }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const id = uuidv4(); 
-      setFullNameData(id, event.target.value, 'Date Picker');
+      setFullNameData(id, event.target.value, 'Date Picker',null);
     }
   };
 

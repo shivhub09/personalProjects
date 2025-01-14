@@ -45,7 +45,7 @@ const DropArea = ({ onDrop, setFullNameData }) => {
   const handleBlur = (event) => {
     if (event.target.value.trim()){
       const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, "Form Title");
+      setFullNameData(id, event.target.value, "Form Title", null);
     }
   };
 
@@ -161,7 +161,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  setFullNameData,
+  setFullNameData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropArea);

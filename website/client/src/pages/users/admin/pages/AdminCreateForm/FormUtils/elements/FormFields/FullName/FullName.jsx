@@ -18,10 +18,10 @@ const FullName = ({ fullNameDataList, setFullNameData }) => {
 
       if (existingEntry) {
         // Update the existing entry
-        setFullNameData(existingEntry.uniqueId, inputValue, "Full Name");
+        setFullNameData(existingEntry.uniqueId, inputValue, "Full Name",{});
       } else {
         // Create a new entry
-        setFullNameData(componentId, inputValue, "Full Name");
+        setFullNameData(componentId, inputValue, "Full Name",{});
       }
     }
   };

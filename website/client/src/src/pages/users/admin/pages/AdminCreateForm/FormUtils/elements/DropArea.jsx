@@ -45,7 +45,7 @@ const DropArea = ({ onDrop, setFullNameData }) => {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, "Form Title");
+      setFullNameData(id, event.target.value, "Form Title",{});
     }
   };
 

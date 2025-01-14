@@ -4,17 +4,19 @@ const { Schema } = mongoose;
 const FormFieldItemSchema = new Schema({
     uniqueId: {
         type: String,
-        required: true,
     },
     title: {
         type: String,
-        required: true,
     },
     type: {
         type: String,
-        required: true,
     },
+    options: {
+        type: Map,
+        of: [Map],
+    }
 });
+
 
 
 const FormFieldTableSchema = new Schema({
@@ -30,8 +32,8 @@ const FormFieldTableSchema = new Schema({
         type: Number,
         required: true,
     },
-    columnHeaders :{
-        type:[String],
+    columnHeaders: {
+        type: [String],
         required: true,
     },
 });
@@ -48,8 +50,8 @@ const FormFieldSchema = new Schema({
         required: true,
     },
 
-    tableFields:{
-        type:[FormFieldTableSchema]
+    tableFields: {
+        type: [FormFieldTableSchema]
     },
 
     collectionName: {

@@ -9,7 +9,7 @@ const ShortText = ({ fullNameDataList, setFullNameData }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const id = uuidv4(); 
-      setFullNameData(id, event.target.value, 'Short Text');
+      setFullNameData(id, event.target.value, 'Short Text',null);
     }
   };
 

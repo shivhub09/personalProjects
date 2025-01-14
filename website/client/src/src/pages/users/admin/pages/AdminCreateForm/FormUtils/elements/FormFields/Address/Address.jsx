@@ -10,7 +10,7 @@ const Address = ({ fullNameDataList, setFullNameData }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const id = uuidv4(); 
-      setFullNameData(id, event.target.value, 'Address');
+      setFullNameData(id, event.target.value, 'Address',null);
     }
   };
 

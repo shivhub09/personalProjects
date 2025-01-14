@@ -9,7 +9,7 @@ const Heading = ({ fullNameDataList, setFullNameData }) => {
   const handleBlur = (event) => {
     if (event.target.value.trim()) {
       const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, 'Heading');
+      setFullNameData(id, event.target.value, 'Heading',null);
     }
   };
 

@@ -10,7 +10,7 @@ const Email = ({ fullNameDataList, setFullNameData  }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, 'Email');
+      setFullNameData(id, event.target.value, 'Email',null);
     }
   };
 
