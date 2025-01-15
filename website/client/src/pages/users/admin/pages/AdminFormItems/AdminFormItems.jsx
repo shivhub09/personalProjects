@@ -53,6 +53,7 @@ const AdminFormItems = ({ setActiveTab }) => {
                         setActiveTab={setActiveTab}
 
                     />
+
                 </div>
             </div>
         </div>
