@@ -29,34 +29,42 @@ import { useParams } from 'react-router-dom';
 
 
 const dragItems = [
-  { id: "1", text: "Heading", component: Heading , title:""},
-  { id: "2", text: "Full Name", component: FullName  , title:""},
-  { id: "3", text: "Email", component: Email  , title:""},
-  { id: "4", text: "Address",component: Address  , title:""},
-  { id: "5", text: "Phone", component: Phone  , title:""},
-  { id: "6", text: "Date Picker", component: DatePicker  , title:""},
-  { id: "7", text: "Appointment", component: Appointment  , title:""},
-  { id: "8", text: "Short Text", component: ShortText  , title:""},
-  { id: "9", text: "Long Text", component: LongText  , title:""},
-  { id: "10", text: "Drop Down", component: DropDown  , title:""},
-  { id: "11", text: "Single Choice",component: SingleChoice , title:""  },
-  { id: "12", text: "Multiple Choice",component: MultipleChoice   , title:""},
-  { id: "13", text: "Number", component: Number  , title:""},
-  { id: "14", text: "Image",component: Image  , title:""},
-  { id: "15", text: "File Upload",  component: FIleUpload  , title:""},
-  { id: "16", text: "Star Rating",component: StarRating  , title:""},
-  { id: "17", text: "Scale Rating", component: ScaleRating  , title:""},
-  { id: "18", text: "Table", component: Table  , title:""},
+  { id: "1", text: "Heading", component: Heading, title: "" },
+  { id: "2", text: "Full Name", component: FullName, title: "" },
+  { id: "3", text: "Email", component: Email, title: "" },
+  { id: "4", text: "Address", component: Address, title: "" },
+  { id: "5", text: "Phone", component: Phone, title: "" },
+  { id: "6", text: "Date Picker", component: DatePicker, title: "" },
+  { id: "7", text: "Appointment", component: Appointment, title: "" },
+  { id: "8", text: "Short Text", component: ShortText, title: "" },
+  { id: "9", text: "Long Text", component: LongText, title: "" },
+  { id: "10", text: "Drop Down", component: DropDown, title: "" },
+  { id: "11", text: "Single Choice", component: SingleChoice, title: "" },
+  { id: "12", text: "Multiple Choice", component: MultipleChoice, title: "" },
+  { id: "13", text: "Number", component: Number, title: "" },
+  { id: "14", text: "Image", component: Image, title: "" },
+  { id: "15", text: "File Upload", component: FIleUpload, title: "" },
+  { id: "16", text: "Star Rating", component: StarRating, title: "" },
+  { id: "17", text: "Scale Rating", component: ScaleRating, title: "" },
+  { id: "18", text: "Table", component: Table, title: "" },
 ];
 
 const AdminCreateForms = () => {
   const [items, setItems] = useState([]);
-  const [itemList , setItemList] = useState([]);
+  const [itemList, setItemList] = useState([]);
+
+  const {formId} = useParams();
+
+  if(formId){
+    console.log("this is nested form");
+    
+  }
+
 
   const handleDrop = (item) => {
     const newItem = { id: item.id, text: item.text, component: item.component };
     const newItems = [...items, newItem];
-    const newItemList = [...itemList , item.text];
+    const newItemList = [...itemList, item.text];
     setItemList(newItemList);
     setItems(newItems);
   };

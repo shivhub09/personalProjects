@@ -1,13 +1,21 @@
 import React from 'react';
 import './FormDetailsBox.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const FormDetailsBox = ({ formId, title, imgSrc, url }) => {
   const navigate = useNavigate();
 
+  console.log(formId);
+  
+
   const handleNextClick = () => {
-      // Ensure the correct URL structure
+    if (url === "createNestedForm") {
+      navigate(`/admin/createNestedForm/${formId}`)
+    } else {
       navigate(`/admin/${url}/${formId}`);
+    }
+
+    // Ensure the correct URL structure
   };
 
   return (
@@ -15,7 +23,7 @@ const FormDetailsBox = ({ formId, title, imgSrc, url }) => {
       <div className="icon-box">
         <img src={imgSrc} alt="" />
       </div>
-      <input type="button" className='detailsBtn' value={title} onClick={()=>{
+      <input type="button" className='detailsBtn' value={title} onClick={() => {
         console.log(formId);
         handleNextClick();
       }} />

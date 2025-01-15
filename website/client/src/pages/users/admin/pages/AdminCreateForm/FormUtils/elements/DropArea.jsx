@@ -8,7 +8,8 @@ import { setFullNameData } from "./FormFields/actions/fullNameActions";
 import { v4 as uuidv4 } from "uuid";
 import { useParams, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
-
+import { useDispatch } from "react-redux";
+import { RESET_FULL_NAME_DATA } from "./FormFields/actions/types";
 const DropArea = ({ onDrop, setFullNameData }) => {
   const [droppedItems, setDroppedItems] = useState([]);
   const [droppedItemNames, setDroppedItemNames] = useState([]);
@@ -18,6 +19,13 @@ const DropArea = ({ onDrop, setFullNameData }) => {
   const [nested, setNested] = useState(false);
   const { campaignId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleReset = () => {
+    dispatch({ type: RESET_FULL_NAME_DATA });
+  };
+
+
+  const { formId: mainParentForm } = useParams();
 
   const fullNameDataList = useSelector(
     (state) => state.fullName.fullNameDataList
@@ -42,8 +50,13 @@ const DropArea = ({ onDrop, setFullNameData }) => {
     }
   }, []);
 
+  if (nested) {
+    console.log("this nest");
+
+  }
+
   const handleBlur = (event) => {
-    if (event.target.value.trim()){
+    if (event.target.value.trim()) {
       const id = uuidv4(); // Generate a unique ID
       setFullNameData(id, event.target.value, "Form Title", null);
     }
@@ -80,15 +93,14 @@ const DropArea = ({ onDrop, setFullNameData }) => {
           formData
         );
       } else {
+
         const formData = {
-          mainFormId: campaignId,
+          mainFormId: mainParentForm,
           formFields: fullNameDataList,
         };
 
-        console.log(
-          "Full Name JSON from store:",
-          JSON.stringify(fullNameDataList, null, 2)
-        );
+        console.log(formData);
+
 
         response = await axios.post(
           "http://localhost:8000/api/v1/admin/createNestedForm",
@@ -100,6 +112,7 @@ const DropArea = ({ onDrop, setFullNameData }) => {
         setSuccessMessage("Form submitted successfully!");
         setShowModal(true);
         setFormId(response.data.data._id); // Ensure you access the correct path in response
+        handleReset();
       } else {
         console.error("Failed to submit form:", response.data.error);
       }

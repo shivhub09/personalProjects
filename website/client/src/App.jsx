@@ -47,7 +47,7 @@ const App = () => {
 />
 
       <Route
-        path="/admin/createNestedForm/:campaignId"
+        path="/admin/createNestedForm/:formId"
         element={<AdminCreateForms />}
       />
       <Route

@@ -69,8 +69,14 @@ const FormFieldSchema = new Schema({
     mainFormId: {
         type: Schema.Types.ObjectId,
         ref: 'FormField',
-        unique:false
+        unique: false
+    },
+
+    nestedForms: {
+        type: [Schema.Types.ObjectId], // Array of ObjectId references
+        ref: 'FormFieldSchema',       // Name of the model being referenced
     }
+
 
 });
 

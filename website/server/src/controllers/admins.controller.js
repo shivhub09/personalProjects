@@ -51,7 +51,7 @@ const createNewClient = asyncHandler(async (req, res) => {
     throw new apiError(
       error.statusCode || 500,
       error.message ||
-        "An error occurred while creating new client. Try again later."
+      "An error occurred while creating new client. Try again later."
     );
   }
 });
@@ -256,8 +256,8 @@ const createNewForm = asyncHandler(async (req, res) => {
       campaignId,
       formFields,
       collectionName: formName,
-      isThisNestedForm:false,
-      mainFormId:null,
+      isThisNestedForm: false,
+      mainFormId: null,
 
     };
 
@@ -292,7 +292,6 @@ const createNestedForm = asyncHandler(async (req, res) => {
     }
 
     const fetchFormDetails = await FormFieldSchema.findOne({ _id: mainFormId });
-    console.log(fetchFormDetails);
     if (!fetchFormDetails) {
       throw new apiError(404, "Form not found.");
     }
@@ -301,8 +300,8 @@ const createNestedForm = asyncHandler(async (req, res) => {
       campaignId: fetchFormDetails.campaignId,
       formFields,
       collectionName: formName,
-      isThisNestedForm:True,
-      mainFormId:mainFormId
+      isThisNestedForm: true,
+      mainFormId: mainFormId
     };
 
     const newForm = await FormFieldSchema.create(user);
