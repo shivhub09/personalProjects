@@ -256,6 +256,8 @@ const createNewForm = asyncHandler(async (req, res) => {
       campaignId,
       formFields,
       collectionName: formName,
+      isThisNestedForm:false,
+      mainFormId:null
     };
 
     console.log(user);
@@ -281,43 +283,43 @@ const createNewForm = asyncHandler(async (req, res) => {
 // need to be worked on
 const createNestedForm = asyncHandler(async (req, res) => {
   try {
-    const { mainFormId, formFields } = req.body;
-    const formName = formFields[0]["title"];
+      const { mainFormId, formFields } = req.body;
+      const formName = formFields[0]["title"];
 
-    if (!mainFormId || !formFields) {
-      throw new apiError(400, "mainFormId and formFields are required");
-    }
+      if (!mainFormId || !formFields) {
+          throw new apiError(400, "mainFormId and formFields are required");
+      }
 
-    const fetchFormDetails = await FormFieldSchema.findOne({ _id: mainFormId });
-    console.log(fetchFormDetails);
-    if (!fetchFormDetails) {
-      throw new apiError(404, "Form not found.");
-    }
+      const fetchFormDetails = await FormFieldSchema.findOne({ _id: mainFormId });
+      if (!fetchFormDetails) {
+          throw new apiError(404, "Form not found.");
+      }
 
-    const user = {
-      campaignId: fetchFormDetails.campaignId,
-      formFields,
-      collectionName: formName,
-    };
+      const user = {
+          campaignId: fetchFormDetails.campaignId,
+          formFields,
+          collectionName: formName,
+          isThisNestedForm: true,
+          mainFormId: mainFormId,
+      };
 
-    const newForm = await FormFieldSchema.create(user);
-    await mongoose.connection.db.createCollection(formName);
+      console.log('yaha tak chal rha');
+      
+      const newForm = await FormFieldSchema.create(user);
 
-    fetchFormDetails.nestedForms.push(newForm._id);
-    await fetchFormDetails.save();
-    console.log("finally created but message issue");
+      fetchFormDetails.nestedForms.push(newForm._id);
+      await fetchFormDetails.save();
 
-    return res
-      .status(200)
-      .json(new apiResponse(200, fetchFormDetails, "Form Details Fetched"));
+      return res.status(200).json(new apiResponse(200, fetchFormDetails, "Form Details Fetched"));
   } catch (error) {
-    console.error("Error creating new nested form :", error);
-    throw new apiError(
-      error.statusCode || 500,
-      error.message || "An error occurred while creating new campaign"
-    );
+      console.error("Error creating new nested form :", error);
+      throw new apiError(
+          error.statusCode || 500,
+          error.message || "An error occurred while creating new campaign"
+      );
   }
 });
+
 
 const createNewCampaign = asyncHandler(async (req, res) => {
   try {
