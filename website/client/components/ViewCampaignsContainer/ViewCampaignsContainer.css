@@ -1,0 +1,61 @@
+.viewCampaignsContainer {
+    background-color: #CDF0FF;
+    height: 600px;
+    width: 95%;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.newCampaignBtn {
+    background-color: #00C2FF;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.deleteClientBtn {
+    background-color: #ff4343;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.newCampaignBtn:hover {
+    background-color: #2d9bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.allCampaignsContainer {
+    flex: 1;
+    width: 100%;
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.allCampaignsContainer::-webkit-scrollbar {
+    display: none;
+}

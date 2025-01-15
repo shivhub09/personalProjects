@@ -9,7 +9,7 @@ const ShortText = ({ fullNameDataList, setFullNameData }) => {
   const handleBlur = (event) => {
     if (event.target.value.trim()){
       const id = uuidv4(); 
-      setFullNameData(id, event.target.value, 'Short Text',null);
+      setFullNameData(id, event.target.value, 'Short Text');
     }
   };
 

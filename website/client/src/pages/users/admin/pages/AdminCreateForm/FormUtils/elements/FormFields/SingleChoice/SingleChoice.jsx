@@ -1,30 +1,51 @@
-import React from 'react';
-import './SingleChoice.css';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { setFullNameData } from '../actions/fullNameActions';
+import { v4 as uuidv4 } from 'uuid';
 
-const SingleChoice = () => {
+const Phone = ({ fullNameDataList = [], setFullNameData }) => {
+  const [componentId] = useState(uuidv4());
+
+  const handleBlur = (field, value) => {
+    const trimmedValue = value.trim();
+    if (trimmedValue) {
+      const existingEntry = fullNameDataList.find(
+        (entry) => entry.uniqueId === componentId
+      );
+
+      const newData = existingEntry
+        ? { ...existingEntry.data, [field]: trimmedValue }
+        : { [field]: trimmedValue };
+
+      setFullNameData(componentId, newData, 'Phone');
+    }
+  };
+
+  const handleRemove = () => {
+    const updatedList = fullNameDataList.filter(
+      (entry) => entry.uniqueId !== componentId
+    );
+    setFullNameData(null, updatedList, 'Phone'); // Pass the updated list
+  };
+
   return (
-    <div className="singleChoice-container">
-      <p className="singleChoice-title">This is a single choice component</p>
-      <div className="singleChoice-options">
-        <label className="singleChoice-option">
-          <input type="radio" name="singleChoice" value="option1" />
-          Option 1
-        </label>
-        <label className="singleChoice-option">
-          <input type="radio" name="singleChoice" value="option2" />
-          Option 2
-        </label>
-        <label className="singleChoice-option">
-          <input type="radio" name="singleChoice" value="option3" />
-          Option 3
-        </label>
-        <label className="singleChoice-option">
-          <input type="radio" name="singleChoice" value="option4" />
-          Option 4
-        </label>
-      </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Enter Option"
+        onBlur={(e) => handleBlur('option', e.target.value)}
+      />
+      <button onClick={handleRemove}>Remove</button>
     </div>
   );
-}
+};
 
-export default SingleChoice;
+const mapStateToProps = (state) => ({
+  fullNameDataList: state.fullName.fullNameDataList,
+});
+
+const mapDispatchToProps = {
+  setFullNameData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Phone);

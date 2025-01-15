@@ -50,18 +50,6 @@ const dragItems = [
 ];
 
 const AdminCreateForms = () => {
-
-
-
-
-
-
-
-
-
-
-
-  
   const [items, setItems] = useState([]);
   const [itemList , setItemList] = useState([]);
 

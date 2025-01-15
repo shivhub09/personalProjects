@@ -1,0 +1,31 @@
+.heading-container{
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    /* font-weight: bold; */
+    /* font-size: 20px; */
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.heading-container input{
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    background-color: transparent;
+    font-family: "Poppins", sans-serif;
+    /* font-weight: bold; */
+    /* font-size: 20px; */
+    letter-spacing: 1px;
+}
+
+.input-heading{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.input-subHeading{
+    padding-left: 10px;
+    font-size: 14px;
+}

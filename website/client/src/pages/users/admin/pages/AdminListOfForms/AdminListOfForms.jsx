@@ -8,4 +8,4 @@ const AdminListOfForms = () => {
   )
 }
 
-export default AdminListOfForms
+export default AdminListOfForms;

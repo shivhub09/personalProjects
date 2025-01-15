@@ -5,32 +5,57 @@ import { setFullNameData } from '../actions/fullNameActions';
 import { v4 as uuidv4 } from 'uuid';
 import './Image.css';
 
-const Image = ({ fullNameDataList, setFullNameData }) => {
+const Image = ({ fullNameDataList = [], setFullNameData }) => {
+  const [componentId] = useState(uuidv4()); // Unique ID for this instance
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleBlur = (event) => {
-    if (event.target.value.trim()){
-      const id = uuidv4();
-      setFullNameData(id, event.target.value, 'Image',null);
+    const title = event.target.value.trim();
+
+    if (title) {
+      const existingEntry = fullNameDataList.find(
+        (entry) => entry.uniqueId === componentId
+      );
+
+      if (existingEntry) {
+        // Update the existing entry
+        setFullNameData(componentId, title, 'Image');
+      } else {
+        // Create a new entry
+        setFullNameData(componentId, title, 'Image');
+      }
     }
   };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
+
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
         setImagePreview(e.target.result);
-        const id = uuidv4();
-        setFullNameData(id, file.name, 'Uploaded Image',null);
+
+        const title = `Image (${file.name})`; // Default title for the image
+        const existingEntry = fullNameDataList.find(
+          (entry) => entry.uniqueId === componentId
+        );
+
+        if (existingEntry) {
+          // Update the existing entry
+          setFullNameData(componentId, existingEntry.title || title, 'Image');
+        } else {
+          // Create a new entry
+          setFullNameData(componentId, title, 'Image');
+        }
       };
+
       reader.readAsDataURL(file);
     }
   };
 
   const [{ isDragging }, dragRef] = useDrag({
     type: 'item',
-    item: { id: uuidv4(), type: 'Image', text: 'Image' },
+    item: { id: componentId, type: 'Image', text: 'Image' },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -41,7 +66,7 @@ const Image = ({ fullNameDataList, setFullNameData }) => {
   }, [fullNameDataList]);
 
   return (
-    <div className="imagePicker-container" ref={dragRef}>
+    <div className={`imagePicker-container ${isDragging ? 'dragging' : ''}`} ref={dragRef}>
       <input
         type="text"
         className="imagePicker-title"
@@ -51,12 +76,12 @@ const Image = ({ fullNameDataList, setFullNameData }) => {
       />
       <input
         type="file"
-        id="imageUpload"
+        id={`imageUpload-${componentId}`}
         accept="image/*"
         onChange={handleImageUpload}
         className="imagePicker-input"
       />
-      <label htmlFor="imageUpload" className="imagePicker-label">
+      <label htmlFor={`imageUpload-${componentId}`} className="imagePicker-label">
         Choose an Image
       </label>
       {imagePreview && (

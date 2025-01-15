@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import './Email.css';
@@ -6,16 +6,17 @@ import { setFullNameData } from '../actions/fullNameActions';
 import { v4 as uuidv4 } from 'uuid';
 
 const Email = ({ fullNameDataList, setFullNameData }) => {
+  const [id] = useState(uuidv4()); // Generate a unique ID once
+
   const handleBlur = (event) => {
     if (event.target.value.trim()) {
-      const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, 'Email',null);
+      setFullNameData(id, event.target.value, 'Email');
     }
   };
 
   const [{ isDragging }, dragRef] = useDrag({
     type: 'item',
-    item: { id: uuidv4(), type: 'Email', text: 'Email' },
+    item: { id, type: 'Email', text: 'Email' },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

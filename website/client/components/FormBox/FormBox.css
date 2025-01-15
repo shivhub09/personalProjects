@@ -1,0 +1,57 @@
+.formBox{
+    height: 200px;
+    width: 200px;
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+}
+
+.formBox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.formBox h3 {
+    font-size: 28px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+}
+
+
+.formBox h4 {
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #7b7b7b;
+    margin: 10px 0;
+    text-align: center;
+}
+
+
+.viewClientsBox-container .detailsBtn {
+    font-size: 14x;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.viewClientsBox-container .detailsBtn:hover {
+    background-color: #0056b3;
+}

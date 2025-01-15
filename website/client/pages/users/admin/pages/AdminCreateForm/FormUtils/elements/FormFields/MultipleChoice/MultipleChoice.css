@@ -1,0 +1,72 @@
+.multipleChoice-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    background-color: transparent;
+    font-family: "Poppins", sans-serif;
+    align-items: start;
+  }
+
+
+  .multipleChoicetitle-container input{
+    border: none;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  
+  .multipleChoice-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .multipleChoice-option {
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .multipleChoice-option input {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    position: relative;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .multipleChoice-option input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .multipleChoice-option input:checked::before {
+    content: '✔';
+    display: block;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -2px;
+    left: 0;
+  }
+  
+  .multipleChoice-option input:hover {
+    border-color: #0056b3;
+  }
+  

@@ -1,0 +1,90 @@
+.OverViewTileOneContainer {
+    width: 95%;
+    margin: 20px auto; /* Center the container */
+    background-color: #10B472;
+    color: white;
+    font-weight: 900;
+    font-family: "Poppins", sans-serif;
+    font-size: 36px; 
+    box-sizing: border-box;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute space evenly */
+    padding: 20px; /* Add padding for spacing */
+    min-height: 250px; /* Adjusted height to reduce vertical gap */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+.OverViewTileOneBox-container {
+    background-color: #00DA82;
+    border-radius: 16px;
+    flex: 1 1 calc(25% - 20px); /* Four boxes per row with spacing adjustment */
+    aspect-ratio: 1 / 1; /* Maintains a 1:1 aspect ratio */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+    margin: 10px; /* Margin for spacing */
+    max-width: 200px; /* Ensure a maximum width to avoid overflow */
+    max-height: 200px; /* Ensure a maximum height to avoid overflow */
+    box-sizing: border-box; /* Ensure padding and border are included in the width/height */
+}
+
+.OverViewTileOneBox-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+}
+
+.containerone-title {
+    margin: 0;
+    color: white;
+    font-size: 24px; /* Consistent font size */
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+}
+
+.container-number { 
+    margin: 0;
+    color: white;
+    font-size: 36px; /* Consistent font size */
+    text-align: center;
+    font-family: "Poppins", sans-serif;   
+    font-weight: 900;
+}
+
+@media (max-width: 768px) {
+    .OverViewTileOneBox-container {
+        flex: 1 1 calc(50% - 20px); /* Two boxes per row on smaller screens */
+    }
+
+    .containerone-title {
+        font-size: 20px; /* Consistent font size */
+    }
+
+    .container-number {
+        font-size: 24px; /* Consistent font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .OverViewTileOneBox-container {
+        flex: 1 1 calc(100% - 20px); /* One box per row on very small screens */
+    }
+
+    .containerone-title {
+        font-size: 18px; /* Consistent font size */
+    }
+
+    .container-number {
+        font-size: 20px; /* Consistent font size */
+    }
+}

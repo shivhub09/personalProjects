@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { setFullNameData } from '../actions/fullNameActions';
@@ -6,16 +6,29 @@ import { v4 as uuidv4 } from 'uuid';
 import './Heading.css';
 
 const Heading = ({ fullNameDataList, setFullNameData }) => {
+  const [componentId] = useState(uuidv4()); // Unique ID for this component instance
+
   const handleBlur = (event) => {
-    if (event.target.value.trim()) {
-      const id = uuidv4(); // Generate a unique ID
-      setFullNameData(id, event.target.value, 'Heading',null);
+    const inputValue = event.target.value.trim();
+
+    if (inputValue) {
+      const existingEntry = fullNameDataList.find(
+        (entry) => entry.uniqueId === componentId // Match by this component's unique ID
+      );
+
+      if (existingEntry) {
+        // Update the existing entry
+        setFullNameData(existingEntry.uniqueId, inputValue, 'Heading');
+      } else {
+        // Create a new entry
+        setFullNameData(componentId, inputValue, 'Heading');
+      }
     }
   };
 
   const [{ isDragging }, dragRef] = useDrag({
     type: 'item',
-    item: { id: uuidv4(), type: 'Heading', text: 'Heading' },
+    item: { id: componentId, type: 'Heading', text: 'Heading' },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -26,7 +39,7 @@ const Heading = ({ fullNameDataList, setFullNameData }) => {
   }, [fullNameDataList]);
 
   return (
-    <div className="heading-container" ref={dragRef}>
+    <div className={`heading-container ${isDragging ? 'dragging' : ''}`} ref={dragRef}>
       <input
         type="text"
         className="input-heading"
