@@ -2,7 +2,7 @@ import "./App.css";
 import LoginPage from "./pages/globals/LoginPage/LoginPage";
 import { Routes, Route, Navigate } from "react-router-dom";
 // import AdminLandingPage from "./pages/users/admin/pages/AdminLandingPage/AdminLandingPage";
-import AdminCreateForms from  "./pages/users/admin/pages/AdminCreateForm/AdminCreateForms";
+import AdminCreateForms from "./pages/users/admin/pages/AdminCreateForm/AdminCreateForms";
 import MisLandingPage from "./pages/users/mis/MisLandingPage/MisLandingPage";
 import AdminAssignCreatedForm from "./pages/users/admin/pages/AdminAssignCreatedForm/AdminAssignCreatedForm";
 import AdminFormViewData from "./pages/users/admin/pages/AdminFormViewData/AdminFormViewData";
@@ -28,31 +28,31 @@ const App = () => {
       <Route
         path="/"
         element={
-            <LoginPage />       
+          <LoginPage />
         }
       />
       <Route
         path="/admin/:id/*"
         element={
-            <AdminPage />
+          <AdminPage />
         }
       />
       <Route
         path="/mis/:id/*"
         element={
-            <MisPage />
+          <MisPage />
         }
       />
 
 
-<Route
-  path="/admin/createNewForm/:campaignId"
-  element={
-    <RequiredAuth>
-      <AdminCreateForms />
-    </RequiredAuth>
-  }
-/>
+      <Route
+        path="/admin/createNewForm/:campaignId"
+        element={
+          <RequiredAuth>
+            <AdminCreateForms />
+          </RequiredAuth>
+        }
+      />
 
       <Route
         path="/admin/createNestedForm/:formId"
@@ -74,7 +74,6 @@ const App = () => {
         element={<AdminAssignCreatedForm />}
       />
       <Route path="/mis" element={<MisLandingPage />} />
-      {/* <Route path="*" element={<Navigate to="/" />} /> */}
     </Routes >
   );
 };
