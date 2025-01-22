@@ -44,7 +44,8 @@ const LoginPage = () => {
         if (role === "admin") {
           navigate(`/admin/${id}`);
         } else if (role === "mis") {
-          navigate("/mis");
+          console.log("Mis id: ", id);
+          navigate(`/mis/${id}`);
         }
       } else {
         setError("Login failed. Please try again.");

@@ -13,6 +13,12 @@ const FormFieldSchema = require("../models/forms.fields.model");
 const asyncHandler = require("../utils/asyncHandler");
 const formsFieldsModel = require("../models/forms.fields.model");
 
+
+
+
+
+
+//
 const createNewClient = asyncHandler(async (req, res) => {
   try {
     const { clientName, clientLocation, clientWebsite } = req.body;
@@ -55,6 +61,35 @@ const createNewClient = asyncHandler(async (req, res) => {
     );
   }
 });
+
+
+
+const fetchNestedForms = asyncHandler(async (req, res) => {
+  try {
+    const { mainFormId } = req.body;
+
+    if (!mainFormId) {
+      throw new apiError(400, "mainFormId is required");
+    }
+
+
+    const mainForm = await FormFieldSchema.findById(mainFormId);
+    console.log("Main Form: ", mainForm);
+    console.log("Nested Forms: ", mainForm.nestedForms);
+    if (!mainForm || !mainForm.nestedForms || mainForm.nestedForms.length === 0) {
+      throw new apiError(404, "Nested forms not found.");
+    }
+
+    res.status(200).json(new apiResponse(200, mainForm, "Fetched forms successfull"));
+  } catch (error) {
+    console.error(error);
+    throw new apiError(
+      error.statusCode || 500,
+      error.message || "Internal Server Problem"
+    );
+  }
+});
+
 
 const fetchClient = asyncHandler(async (req, res) => {
   try {
@@ -427,6 +462,11 @@ const unassignCreatedForm = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+
+
+
 const updateUserRights = asyncHandler(async (req, res) => {
   try {
     const {
@@ -675,7 +715,10 @@ const acceptRejectData = asyncHandler(async (req, res) => {
     );
   }
 });
-
+//create a new controller to fetch nested forms
+//parameters: mainformid=> look for an array object (nestedForms : Array (1)) fetch this
+// create route in route.js for this
+//adminFormdetails.jsx pe call this url(api call)
 module.exports = {
   unassignCreatedForm,
   fetchFormsForCampaigns,
@@ -697,5 +740,6 @@ module.exports = {
   fetchAllClients,
   fetchClient,
   createNewClient,
+  fetchNestedForms,
 };
 ``;

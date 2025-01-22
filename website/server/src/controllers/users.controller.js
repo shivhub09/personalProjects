@@ -3,6 +3,7 @@ const apiError = require("../utils/apiError");
 const apiResponse = require("../utils/apiResponse");
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
+const client = require("../models/client.model");
 
 const generateAccessAndRefreshTokens = async (email) => {
   try {
@@ -48,6 +49,38 @@ const createNewUser = asyncHandler(async (req, res) => {
   res
     .status(201)
     .json(new apiResponse(201, newUser, "User Created Successfully"));
+});
+
+
+//controller for assigning client to mis and manager 
+const assignClient = asyncHandler(async (req, res) => {
+  const { misId, managerId, clientId } = req.body;
+
+  if (!misId || !managerId || !clientId) {
+    throw new apiError(400, "All fields (misId, managerId, clientId) are required");
+  }
+
+  const clientUser = await client.findById(clientId);
+  if (!clientUser) {
+    throw new apiError(404, "Client not found");
+  }
+
+  const user = await User.findById(misId);
+  if (!user) {
+    throw new apiError(404, "MIS not found");
+  }
+
+  const manager = await User.findById(managerId);
+  if (!manager) {
+    throw new apiError(404, "Manager not found");
+  }
+
+  clientUser.clientAssigned.push({ misId, managerId });
+  // await clientId.save();
+
+  res
+    .status(200)
+    .json(new apiResponse(200, clientUser, "Client assigned to MIS and Manager successfully"));
 });
 
 // Controller: Login User
@@ -220,6 +253,7 @@ module.exports = {
   createNewUser,
   loginUser,
   registerUser,
+  assignClient,
   refreshAccessToken,
   logoutUser,
   userDetails,

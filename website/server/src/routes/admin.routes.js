@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const upload = require("../middlewares/multer.middleware");
 const adminController = require('../controllers/admins.controller');
+const { fetchNestedForms } = require('../controllers/admins.controller');
 
     
 router.route("/createNestedForm").post(adminController.createNestedForm);
@@ -79,5 +80,8 @@ router.route("/fetchNumberOfClientsAndCampaigns").get(adminController.fetchNumbe
 
 // fetch forms
 router.route("/fetchFormsForGivenClient").post(adminController.fetchFormsForCampaigns);
+
+//fetch nested forms
+router.route("/fetchnestedforms").post(adminController.fetchNestedForms);
 
 module.exports = router;

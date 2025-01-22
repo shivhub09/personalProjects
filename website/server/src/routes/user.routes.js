@@ -20,5 +20,7 @@ router.route("/userDetails").post(userController.userDetails);
 router.route("/currentUser").get(verifyJWT, userController.currentUser);
 // creating new user
 router.route("/createUser").post(userController.createNewUser);
+//assigning client to user
+router.route("/assignClient").post(userController.assignClient);
 
 module.exports = router;

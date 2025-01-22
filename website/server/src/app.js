@@ -1,20 +1,20 @@
 const express = require("express");
-const cors = require("cors");
+const app = express();
+var cors = require("cors");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
-const app = express();
+const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:3000", // Replace with your client origin
+  credentials: true, // Allow cookies or other credentials
+};
 
-// Configure CORS to allow credentials
-app.use(cors({
-    origin: "http://localhost:3000",  // Your frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true                 // Allow cookies to be sent
-}));
+app.use(cors(corsOptions));
 
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 app.use(express.static("public"));
+
 app.use(cookieParser());
 
 const userRouter = require("./routes/user.routes");

@@ -16,6 +16,7 @@ import AdminFormViewData from '../AdminFormViewData/AdminFormViewData.jsx';
 import AdminListOfForms from '../AdminListOfForms/AdminListOfForms.jsx';
 import FormBox from '../../../../../components/FormBox/FormBox.jsx';
 import AdminFormItems from '../AdminFormItems/AdminFormItems.jsx';
+import AdminNestedViewData from '../AdminNestedViewData/AdminNestedViewData.jsx'; 
 
 const AdminPage = () => {
     return (
@@ -24,7 +25,7 @@ const AdminPage = () => {
                 <AdminLandingPage></AdminLandingPage>
             </div>
             <div className="admin-page-content">
-                <Routes>
+            <Routes>
                     <Route path="" element={<AdminOverViewPage />} />
                     <Route path="newClient" element={<AdminCreateNewClient />} />
                     <Route path="viewClients" element={<AdminViewClientsPage />} />
@@ -36,12 +37,8 @@ const AdminPage = () => {
                     <Route path="viewClients/client-detail/:clientId/AdminCreateNewCampaign" element={<AdminCreateNewCampaign />} />
                     <Route path="viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId" element={< AdminCampaignDetailsPage/>} />
                     <Route path="viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId/viewForms" element={<AdminFormDetails />} />
-
-                    http://localhost:3000/admin/67406afc89e4fd843760e7f6/viewClients/client-detail/677bc7917315c1d0c04e167f/campaignDetailsPage/677ccace37687a9517a32006/viewForms/viewFormData/67862d9d26c3c9e75030c3a5
                     <Route path = "viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId/viewForms/viewFormData/:formId" element={<AdminFormItems />} />
-
-
-                    
+                    <Route path = "viewClients/client-detail/:clientId/campaignDetailsPage/:campaignId/viewForms/viewFormData/:formId/viewNestedFormData" element={<AdminNestedViewData />} />  
                 </Routes>
             </div>
 

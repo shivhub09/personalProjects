@@ -53,7 +53,13 @@ const AdminFormItems = ({ setActiveTab }) => {
                         setActiveTab={setActiveTab}
 
                     />
-
+                    <FormDetailsBox
+                        imgSrc="https://cdn-icons-png.flaticon.com/512/993/993762.png"
+                        title="VIEW NESTED FORM DATA"
+                        formId={formId}
+                        url="viewNestedFormData"
+                        setActiveTab={setActiveTab}
+                    />
                 </div>
             </div>
         </div>

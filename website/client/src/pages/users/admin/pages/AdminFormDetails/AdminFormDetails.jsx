@@ -5,13 +5,19 @@ import "./AdminFormDetails.css";
 import FormBox from "../../../../../components/FormBox/FormBox";
 import { useParams } from "react-router-dom";
 
+
+
 const AdminFormDetails = () => {
   const { campaignId } = useParams();
   const [forms, setForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  //const fetchnestedform  same as fetchform
+
+
 
   useEffect(() => {
+    //call if else if url contains "fetchnestedforms" call this or fetchforms. 
     const fetchForms = async () => {
       try {
         const response = await axios.post(
@@ -25,6 +31,13 @@ const AdminFormDetails = () => {
         setLoading(false);
       }
     };
+
+
+    const fetchNestedForm = async () => {
+      
+    }
+
+
 
     if (campaignId) {
       fetchForms();

@@ -72,7 +72,7 @@ const DropArea = ({ onDrop, setFullNameData }) => {
   function arrayToFormFields(array) {
     return array.map((item, index) => ({ id: index + 1, value: item }));
   }
-
+//nested updates
   const handleSubmitForm = async () => {
     try {
       const formFieldsArray = arrayToFormFields(droppedItemNames);
